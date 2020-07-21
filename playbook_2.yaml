@@ -1,0 +1,34 @@
+---
+- name: App X
+  hosts: lx
+  gather_facts: true
+  become: true
+  tasks:
+   - name: Apt Installer
+     apt:
+       name: lighttpd
+       state: "{{app_state}}"
+     register: ergebnis
+     when:
+      - ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+      - app_state is defined
+   - name: yum installer
+     yum:
+       name: httpd
+       state: "{{app_state}}"
+     when:
+      - ansible_distribution == "CentOS"
+      - app_state is defined
+     register: ergebniscentos
+   - name: Kopiere HTML
+     copy:
+       src: index.html
+       dest: /tmp/abc.html
+     when:
+      - ergebnis is succeeded or ergebniscentos is succeeded
+      - ergebnis is not skipped or ergebniscentos is not skipped
+   - debug:
+       var: ergebnis
+   - debug:
+       var: ergebniscentos
+

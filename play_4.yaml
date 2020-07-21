@@ -1,0 +1,13 @@
+---
+- hosts: lx
+  tasks:
+   - name: Ausgabe
+     file:
+       path: "/tmp/{{item.dirname}}"
+       state: directory
+       mode: "{{item.modes}}"
+     loop:
+      - { dirname: "banane", modes: "0600" }
+      - { dirname: "apfel", modes: "0644" }
+      - { dirname: "bier", modes: "0777" }
+

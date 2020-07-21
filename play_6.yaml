@@ -1,0 +1,17 @@
+---
+- hosts: lx
+  vars:
+    liste:
+     - "Schlafenszeit"
+     - "ich will ein bier"
+     - "ich will ein kaffee"
+     - "Drück den roten Knopf"
+  tasks:
+   - name: Ausgabe
+     debug:
+       msg: " meine nummer ist: {{ 'CLIENTID%05x' | format(item)}}"
+     loop: "{{ range(0,99,2)| list}}"
+   - name: loop example
+     debug: 
+       msg: "{{liste|random}}"
+

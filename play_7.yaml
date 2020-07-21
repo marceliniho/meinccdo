@@ -1,0 +1,22 @@
+---
+- name: Play 1
+  hosts: lx
+  become: true
+  tasks: 
+   - name: Install
+     yum:
+       name: httpd
+       state: present
+     notify:
+      - neustart
+   - name: Konfiguriere....
+     copy:
+       src: index.html
+       dest: /tmp/testchange
+     notify:
+      - neustart
+  handlers:
+   - name: neustart
+     service: 
+       name: httpd
+       state: restarted

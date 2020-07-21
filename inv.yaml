@@ -1,0 +1,7 @@
+all:
+  hosts:
+  children:
+    lx:
+      hosts:
+        ansible-lx1.experteach.demo:
+

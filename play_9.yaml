@@ -1,0 +1,17 @@
+---
+- hosts: lx
+  vars:
+    list1:
+     - 1
+     - 2
+     - 6
+     - 0
+     - 4
+     - 2
+     - 4
+    path: "/ordner/unterordner/datei"
+  tasks:
+   - name: Konfig
+     template:
+       src: beispiel.conf
+       dest: /tmp/final.conf

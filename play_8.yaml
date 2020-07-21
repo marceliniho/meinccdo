@@ -1,0 +1,14 @@
+---
+- hosts: lx
+  vars:
+    ntp_servers:
+     - "abc"
+     - "def"
+  tasks:
+   - debug:
+       msg: "Hallo ich bin der Wert {{item}}"
+     loop: "{{ ntp_servers }}"
+   - debug:
+       msg: "Neuer Task {{item}}"
+     loop: "{{ ntp_servers }}"
+

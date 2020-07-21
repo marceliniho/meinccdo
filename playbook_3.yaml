@@ -1,0 +1,20 @@
+---
+- hosts: lx
+  tasks:
+   - name: Lese aus
+     command: ls /var/
+     register: auslese
+   - name: Anlegen
+     become: true
+     file:
+       path: /var/www3
+       state: directory
+     when: auslese.stdout.find('www3') != 0
+     register: erstellt
+   - name: Kopiere
+     become: true
+     copy:
+       src: index.html
+       dest: /var/www3/index.html2
+     when: 
+      - erstellt is succeeded or erstellt is skipped

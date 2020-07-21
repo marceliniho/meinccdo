@@ -1,0 +1,23 @@
+---
+test: 123
+123: test
+einkaufsliste:
+ - banane
+ - apfel
+ - brot
+ - bier
+ - sekt
+ - wein
+
+element:
+  username: marcel
+  passwort: 1234
+  arbeit:
+    standort: dietzenbach
+    name: experteach
+
+- test
+- abc
+- blubb
+
+kex: value
